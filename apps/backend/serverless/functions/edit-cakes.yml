@@ -1,0 +1,10 @@
+editCakes:
+  handler: src/functions/edit-cakes/index.default
+  events:
+    - http:
+        path: /cakes/{id}
+        method: PUT
+        cors: true
+        request:
+          schema:
+            application/json: ${file(serverless/validation/edit-cakes.json)}

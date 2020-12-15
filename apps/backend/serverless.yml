@@ -1,0 +1,53 @@
+service: cake-backend
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  stage: ${opt:stage, env:STAGE, 'dev'}
+  iamRoleStatements:
+    -
+      Effect: Allow
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: '*'
+  environment:
+    AWS_NODEJS_CONNECTION_REUSE_ENABLED: 1
+    POSTGRES_HOST: ${self:custom.environment.postgresHost}
+    POSTGRES_DB: ${env:POSTGRES_DB, 'app_db'}
+    POSTGRES_USER: ${env:POSTGRES_USER}
+    POSTGRES_PASSWORD: ${env:POSTGRES_PASSWORD}
+  logRetentionInDays: 30
+
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+    packExternalModulesMaxBuffer: 1000000
+    packager: yarn
+  prune:
+    automatic: true
+    number: 3
+  dotenv:
+    path: ../../.env
+  serverless-offline:
+    allowCache: true
+  dbHost: !ImportValue RDSEndpoint
+  environment:
+    postgresHost: ${self:custom.dbHost, 'localhost'}
+
+functions:
+  - ${file(./serverless/functions/create-cakes.yml)}
+  - ${file(./serverless/functions/delete-cakes.yml)}
+  - ${file(./serverless/functions/edit-cakes.yml)}
+  - ${file(./serverless/functions/get-cake.yml)}
+  - ${file(./serverless/functions/get-cakes.yml)}
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-webpack
+  - serverless-prune-plugin
+  - serverless-offline

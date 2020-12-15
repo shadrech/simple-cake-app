@@ -1,0 +1,7 @@
+getCakes:
+  handler: src/functions/get-cakes/index.default
+  events:
+    - http:
+        path: /cakes
+        method: GET
+        cors: true

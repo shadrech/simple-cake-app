@@ -1,0 +1,11 @@
+deleteCakes:
+  handler: src/functions/delete-cakes/index.default
+  events:
+    - http:
+        path: /cakes/{id}
+        method: DELETE
+        cors: true
+        request:
+          parameters:
+            paths:
+              id: true

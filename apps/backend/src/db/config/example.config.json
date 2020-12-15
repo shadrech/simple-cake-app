@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "username": "postgres",
+    "password": "password",
+    "database": "app_db",
+    "host": "127.0.0.1:5432",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "app_db",
+    "host": "127.0.0.1:5432",
+    "dialect": "postgres"
+  }
+}

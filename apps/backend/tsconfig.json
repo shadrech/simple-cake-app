@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "include": ["src", "types.d.ts"],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~dbModels/*": ["src/db/models/*"],
+      "~models/*": ["src/models/*"],
+      "~helpers/*": ["src/helpers/*"]
+    }
+  }
+}

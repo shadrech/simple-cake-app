@@ -1,0 +1,10 @@
+createCakes
+  handler: src/functions/create-cakes/index.default
+  events:
+    - http:
+        path: /cakes
+        method: POST
+        cors: true
+        request:
+          schema:
+            application/json: ${file(serverless/validation/create-cakes.json)}

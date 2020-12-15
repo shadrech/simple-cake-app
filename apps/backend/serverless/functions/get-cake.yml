@@ -1,0 +1,11 @@
+getCake:
+  handler: src/functions/get-cake/index.default
+  events:
+    - http:
+        path: /cakes/{id}
+        method: GET
+        cors: true
+        request:
+          parameters:
+            paths:
+              id: true
