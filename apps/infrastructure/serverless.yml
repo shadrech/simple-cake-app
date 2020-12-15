@@ -1,0 +1,31 @@
+service: infrastructure
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: eu-west-1
+  stage: ${opt:stage, env:STAGE, 'dev'}
+
+custom:
+  dotenv:
+    path: ../../.env
+plugins:
+  - serverless-dotenv-plugin
+
+resources:
+  Resources:
+    RDS: ${file(./resources/databases/rds.yml)}
+    CakeBucket: ${file(./resources/storage/cake-images-bucket.yml)}
+  Outputs:
+    RDSEndpoint:
+      Value: !GetAtt RDS.Endpoint.Address
+      Export:
+        Name: RDSEndpoint
+    CakesBucketArn:
+      Value: !GetAtt CakeBucket.Arn
+      Export:
+        Name: CakeBucketArn
+    CakeBucketName:
+      Value: !Ref CakeBucket
+      Export:
+        Name: CakeBucketName

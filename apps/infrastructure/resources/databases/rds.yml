@@ -1,0 +1,14 @@
+Type: AWS::RDS::DBInstance
+DeletionPolicy: Delete
+Properties:
+  Engine: postgres
+  EngineVersion: "12.2"
+  DBInstanceClass: db.t3.micro
+  AllocatedStorage: 20
+  MaxAllocatedStorage: 64
+  StorageType: gp2
+  PubliclyAccessible: true
+  DBName: ${env:POSTGRES_DB}
+  MasterUsername: ${env:POSTGRES_USER}
+  MasterUserPassword: ${env:POSTGRES_PASSWORD}
+  DBInstanceIdentifier: restaurant-review-app-db

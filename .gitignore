@@ -1,0 +1,15 @@
+node_modules
+apps/**/node_modules
+apps/**/.serverless
+apps/**/.webpack
+
+.env
+
+.storage
+
+apps/backend/src/db/config/config.json
+apps/backend/src/db/migrations/compiled
+
+apps/frontend/.parcel
+apps/frontend/.parcel-cache
+apps/frontend/dist
