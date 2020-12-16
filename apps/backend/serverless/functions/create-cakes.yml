@@ -1,4 +1,4 @@
-createCakes
+createCakes:
   handler: src/functions/create-cakes/index.default
   events:
     - http:

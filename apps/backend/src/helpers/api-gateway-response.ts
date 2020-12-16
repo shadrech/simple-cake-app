@@ -22,6 +22,7 @@ function apiGatewayResponse({ json, statusCode }: ResponseOptions) {
 }
 
 export const tryCatchApiGatewayHandler: CurryingHandler = fn => async (event, context, cb) => {
+  context.callbackWaitsForEmptyEventLoop = false;
   event.body = JSON.parse(event.body as any || '{}');
 
   try {

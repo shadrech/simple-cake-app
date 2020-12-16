@@ -1,4 +1,4 @@
-editCakes:
+editCake:
   handler: src/functions/edit-cakes/index.default
   events:
     - http:

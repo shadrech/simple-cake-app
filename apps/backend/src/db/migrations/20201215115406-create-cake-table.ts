@@ -24,7 +24,7 @@ export = {
       },
 
       yum_factor: {
-        type: DataTypes.NUMBER
+        type: DataTypes.INTEGER
       },
 
       created_at: {

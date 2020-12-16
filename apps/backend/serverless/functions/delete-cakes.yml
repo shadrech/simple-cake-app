@@ -1,4 +1,4 @@
-deleteCakes:
+deleteCake:
   handler: src/functions/delete-cakes/index.default
   events:
     - http:

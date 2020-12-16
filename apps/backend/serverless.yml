@@ -34,10 +34,9 @@ custom:
   dotenv:
     path: ../../.env
   serverless-offline:
-    allowCache: true
-  dbHost: !ImportValue RDSEndpoint
+    allowCache: false
   environment:
-    postgresHost: ${self:custom.dbHost, 'localhost'}
+    POSTGRES_HOST: ${!ImportValue RDSEndpoint, 'localhost'}
 
 functions:
   - ${file(./serverless/functions/create-cakes.yml)}
