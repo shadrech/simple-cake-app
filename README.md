@@ -1,24 +1,26 @@
+# Simple Cake App
 
-Build a simple RESTful API to provide the following operations to the app:
-● GET /cakes
-● GET /cakes/{id}
-● POST /cakes
-● PUT /cakes/{id}
-● DELETE /cakes/{id}
-A cake payload is in the form of: {
-id: <number>,
-name: <string>, comment: <string>, imageUrl: <string>, yumFactor: <number>
-}
-Guidance
-● The app must be maintained within a source controlled repo
-● Any framework can be used on front / back
-● The app should be responsive across mobile/desktop browsers
-● The imageUrl can just be a plain text field (no image picking is required)
-● The inclusion of Progressive Web App features is encouraged
-● Validation criteria:
-● Name: Required
-● Comment: Required, min length 5, max length 200
-● ImageUrl: Required
-● YumFactor: Required
-● Ensure cakes are unique by name. I.E cannot add a cake with a name
-that matches a previously added cake
+Simple cake app. Serverless REST API with React frontend
+
+## Setup
+```
+yarn bootstrap # install app dependencies
+
+cp example.env .env
+
+cp apps/backend/src/db/config/example.config.json apps/backend/src/db/config/config.json # used by sequelize ORM
+```
+
+You'll first need to run db migrations
+```
+docker-compose up -d # run postgres docker container as daemon
+cd apps/backend && yarn migrate # run migrations
+```
+
+Then in apps/backend folder run `yarn serve` to start the api server on http://localhost:3000/dev
+
+For the React app navigate to apps/frontend and run `yarn start` to run app on http://localhost:1234
+
+
+### TODO
+Tests...

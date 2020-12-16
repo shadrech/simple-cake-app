@@ -1,24 +1,6 @@
 version: '3.8'
 
 services:
-  cake_localstack:
-    container_name: cake_app_localstack
-    image: localstack/localstack:latest
-    ports:
-      - "4566-4599:4566-4599"
-      - "${PORT_WEB_UI-8080}:${PORT_WEB_UI-8080}"
-    environment:
-      - SERVICES=s3
-      - DEBUG=1
-      # - DEBUG=${DEBUG- }
-      - DATA_DIR=/tmp/localstack/data
-      - PORT_WEB_UI=${PORT_WEB_UI- }
-      - LAMBDA_EXECUTOR=${LAMBDA_EXECUTOR- }
-      - KINESIS_ERROR_PROBABILITY=${KINESIS_ERROR_PROBABILITY- }
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - DEFAULT_REGION=eu-west-1
-    volumes:
-      - "./.storage/localstack/:/tmp/localstack"
   cake_db:
     container_name: cake_app_db
     image: postgres:13-alpine
